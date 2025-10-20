@@ -134,15 +134,6 @@ src/bundles/c/stdlib/%.c: $(QJSC) src/bundles/js/stdlib/%.js
 		-p tjs__ \
 		src/bundles/js/stdlib/$(basename $(notdir $@)).js
 
-src/bundles/js/stdlib/%.js: src/js/stdlib/*.js src/js/stdlib/ffi/*.js
-	$(ESBUILD) src/js/stdlib/$(notdir $@) \
-		--bundle \
-		--outfile=$@ \
-		--external:buffer \
-		--external:crypto \
-		$(ESBUILD_PARAMS_MINIFY) \
-		$(ESBUILD_PARAMS_COMMON)
-
 src/bundles/c/stdlib/%.c: $(QJSC) src/bundles/js/stdlib/%.js
 	@mkdir -p $(basename $(dir $@))
 	$(QJSC) -m \
