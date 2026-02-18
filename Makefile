@@ -128,7 +128,7 @@ src/bundles/c/stdlib/%.c: $(TJSC) src/bundles/js/stdlib/%.js
 		-p tjs__ \
 		src/bundles/js/stdlib/$(basename $(notdir $@)).js
 
-src/bundles/js/stdlib/%.js: src/js/stdlib/*.js src/js/stdlib/ffi/*.js
+src/bundles/js/stdlib/%.js: src/js/stdlib/*.js
 	$(ESBUILD) src/js/stdlib/$(notdir $@) \
 		--bundle \
 		--outfile=$@ \
@@ -177,5 +177,4 @@ test-advanced:
 	./$(BUILD_DIR)/tjs --stack-size 10485760 test tests/advanced/
 
 .PRECIOUS: src/bundles/js/core/%.js src/bundles/js/stdlib/%.js
-.PHONY: all js debug install clean distclean format lint test test-advanced core stdlib $(TJS) $(TJSC)
-
+.PHONY: all js debug install clean distclean format lint test test-advanced core stdlib
